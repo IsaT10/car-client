@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../../assets/logo.svg";
+import { BsHandbag, BsSearch } from "react-icons/bs";
+import { AuthContext } from "../../../contexts/AuthProvider";
+import { FaUserAlt, FaRegUserCircle } from "react-icons/fa";
 
-const Header2 = () => {
+const OrdersHeader = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div className="navbar lg:px-[121px] h-20 bg-base-100 my-8">
       <div className="navbar-start">
@@ -27,11 +31,10 @@ const Header2 = () => {
             tabIndex={0}
             className="menu menu-compact  dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="font-semibold">
+            <li className="font-semibold ">
               <Link to="/orders">Order</Link>
               <Link to="/ordersreview">Order review</Link>
               <Link to="/services">Manage Inventory</Link>
-              <Link to="/login">Login</Link>
             </li>
           </ul>
         </div>
@@ -40,17 +43,37 @@ const Header2 = () => {
         </Link>
       </div>
       <div className="navbar-end hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li className="font-semibold">
+        <ul className="flex gap-6 text-lg">
+          <li className="font-semibold hover:text-orange duration-100 ">
             <Link to="/orders">Order</Link>
+          </li>
+          <li className="font-semibold hover:text-orange duration-100 ">
             <Link to="/ordersreview">Order review</Link>
+          </li>
+          <li className="font-semibold hover:text-orange duration-100 ">
             <Link to="/services">Manage Inventory</Link>
-            <Link to="/login">Login</Link>
           </li>
         </ul>
+        {user?.photoURL ? (
+          <div className="avatar ml-4 mr-6">
+            <div className="w-10 rounded-full ml-4">
+              <img src={user?.photoURL} alt={user?.name} />
+            </div>
+          </div>
+        ) : (
+          <div className="avatar">
+            <div className="w-12 pt-[15px] pl-1 rounded-full ml-4">
+              <FaRegUserCircle className="text-xl" />
+            </div>
+          </div>
+        )}
+        <div className="hidden lg:flex gap-6  text-xl font-bold">
+          <BsSearch />
+          <BsHandbag />
+        </div>
       </div>
     </div>
   );
 };
 
-export default Header2;
+export default OrdersHeader;

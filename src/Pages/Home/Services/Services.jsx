@@ -5,7 +5,7 @@ const Services = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("services.json")
+    fetch("http://localhost:5000/services")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -13,7 +13,7 @@ const Services = () => {
     <div className="mt-32 mb-36">
       <div className="text-center ">
         <p className="text-base font-bold text-orange uppercase ">Services</p>
-        <h2 className="text-5xl font-bold leading-tight">Our Services</h2>
+        <h2 className="text-5xl font-bold leading-tight mt-5">Our Services</h2>
         <p className="py-2 text-gray ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam optio,
           obcaecati itaque recusandaebr

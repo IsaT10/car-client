@@ -19,14 +19,14 @@ const CarouselItems = ({ slide }) => {
           servicing
         </h1>
       </div>
-      <div className="absolute flex    transform -translate-y-1/2 left-24 top-1/2">
+      <div className="absolute flex transform -translate-y-1/2 left-24 top-1/2">
         <p className="text-white text-xl">
           There Are Many Variations Of Passages Of Available ,but <br />
           The Majority Have Suffered Alteration In some From
         </p>
       </div>
       <div className="absolute flex gap-5 transform -translate-y-1/2 left-24 top-3/4">
-        <button className="btn  bg-[#FF3811] border-2 border-[#FF3811] hover:bg-transparent hover:border-[#FF3811]">
+        <button className="btn bg-[#FF3811] border-2 border-[#FF3811] hover:bg-transparent hover:border-[#FF3811]">
           Discover More
         </button>
         <button className="btn border-2 border-white text-white bg-transparent">
@@ -42,7 +42,7 @@ const CarouselItems = ({ slide }) => {
         </a>
         <a
           href={`#slide${next}`}
-          className="btn btn-circle bg-opacity-80 bg-gray-500  border-none hover:bg-[#FF3811]"
+          className="btn btn-circle bg-opacity-80 bg-gray-500 border-none hover:bg-[#FF3811]"
         >
           <FaArrowRight className="text-lg opacity-70" />
         </a>

@@ -11,7 +11,6 @@ const Login = () => {
     password: "",
   });
 
-  console.log(userInfo.email);
   const [errors, setErrors] = useState({
     email: "",
     password: "",
@@ -19,9 +18,9 @@ const Login = () => {
 
   const { logIn, googleSignIn, resetPassword } = useContext(AuthContext);
   const navigate = useNavigate();
-  //  const location = useLocation();
-  //  const from = location.state?.from?.pathname || "/";
-  // console.log(from);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  console.log(from);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,8 +29,7 @@ const Login = () => {
     logIn(userInfo.email, userInfo.password)
       .then((result) => {
         const user = result.user;
-        //  navigate(from, { replace: true });
-        navigate("/");
+        navigate(from, { replace: true });
         console.log(user);
         form.reset();
       })
@@ -44,6 +42,7 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
         console.log(user);
       })
       .catch((error) => {
@@ -157,32 +156,32 @@ const Login = () => {
               </label>
             </div>
             <div className="form-control mt-6">
-              <button className="btn  bg-[#FF3811] border-2 border-[#FF3811] hover:bg-transparent hover:border-[#FF3811] hover:text-orange rounded-md">
+              <button
+                type="submit"
+                className="btn  bg-[#FF3811] border-2 border-[#FF3811] hover:bg-transparent hover:border-[#FF3811] hover:text-orange rounded-md"
+              >
                 Login
               </button>
-              <p className="text-center text-lg mt-7">Or Login with</p>
-            </div>
-            <div className="flex justify-center items-center gap-6 mt-6 text-2xl">
-              <button>
-                <FaFacebook />
-              </button>
-              <button>
-                <FaLinkedin />
-              </button>
-              <button onClick={handleGoogleSignIn}>
-                <FaGoogle />
-              </button>
-            </div>
-            <div className="text-center mt-10">
-              <span className="text-gray">Have an account?</span>
-              <Link
-                className="text-orange font-semibold underline"
-                to="/signup"
-              >
-                Signup
-              </Link>
             </div>
           </form>
+          <p className="text-center text-lg mt-7">Or Login with</p>
+          <div className="flex justify-center items-center gap-6 mt-6 text-2xl">
+            <button>
+              <FaFacebook />
+            </button>
+            <button>
+              <FaLinkedin />
+            </button>
+            <button onClick={handleGoogleSignIn}>
+              <FaGoogle />
+            </button>
+          </div>
+          <div className="text-center mt-10">
+            <span className="text-gray">Have an account?</span>
+            <Link className="text-orange font-semibold underline" to="/signup">
+              Signup
+            </Link>
+          </div>
         </div>
       </div>
     </div>

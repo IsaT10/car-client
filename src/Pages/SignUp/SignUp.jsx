@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook, FaLinkedin, FaGoogle } from "react-icons/fa";
 import img from "../../assets/images/login/login.svg";
 import { toast } from "react-toastify";
@@ -18,7 +18,12 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+
   // const [checked, setChecked] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const { createUser, userProfileUpdate, verifyEmail, googleSignIn } =
     useContext(AuthContext);
@@ -38,7 +43,7 @@ const SignUp = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // form.reset();
+        form.reset();
 
         // update user info
         userProfileUpdate(userInfo.name)
@@ -53,8 +58,8 @@ const SignUp = () => {
         verifyEmail().then(() => {
           toast.success("Please check your email");
         });
-
-        // navigate("/");
+        navigate(from, { replace: true });
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -65,6 +70,8 @@ const SignUp = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        navigate(from, { replace: true });
+        navigate("/");
         console.log(user);
       })
       .catch((error) => {
