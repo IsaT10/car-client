@@ -20,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from);
+  // console.log(from);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -46,7 +46,6 @@ const Login = () => {
         console.log(user);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         console.log(errorMessage);
       });
